@@ -14,7 +14,7 @@ class User(UserMixin , db.Model):
     id = db.Column(db.Integer , primary_key=True)
     username = db.Column(db.String(50), unique=True, nullable=False)
     email = db.Column(db.String(100), unique=True, nullable=False)
-    password_hash = db.Column(db.String(128), nullabe=False)
+    password_hash = db.Column(db.String(128), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     is_active = db.Column(db.Boolean, default=True)
 
@@ -34,12 +34,12 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(150), nullable=False)
     content = db.Column(db.Text, nullable = False)
-    created_at = db.Column(db.Datetime, default=datetime.utcnow)
-    updated_at  = db.Column(db.Datetime , onupdate=datetime.utcnow)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    updated_at  = db.Column(db.DateTime , onupdate=datetime.utcnow)
     user_id = db.Column(db.Integer , db.ForeignKey('users.id'), nullable=False)
 
     comments = db.relationship('Comment', backref = 'post', lazy=True, cascade='all, delete-orphan')
-    tags = db.relationship('Tag', secondary=post_tags, backref=db.backkref('posts', lazy=True))
+    tags = db.relationship('Tag', secondary=post_tags, backref=db.backref('posts', lazy=True))
 
 
 class Comment(db.Model):

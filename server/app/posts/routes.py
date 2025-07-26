@@ -91,7 +91,7 @@ def create_post():
           db.session.rollback()
           return jsonify({'error':str(e)}), 500
 
-@posts_bp.route('/<int:post_id>', method=['PUT'])
+@posts_bp.route('/<int:post_id>', methods=['PUT'])
 @login_required
 def update_post(post_id):
     post = Post.query.get_or_404(post_id)

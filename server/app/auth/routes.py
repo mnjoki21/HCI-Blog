@@ -3,11 +3,11 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user , logout_user , current_user , login_required
 from app.models import db, User
 from datetime import datetime
-from app.utils import validate_email
+from app.utils import validate_email 
 
 auth_bp = Blueprint('auth', __name__)
 
-@auth_bp.route('/register', methods=['POST'])
+@auth_bp.route('/signup', methods=['POST'])
 def register():
     data = request.get_json()
 
@@ -15,10 +15,10 @@ def register():
         return jsonify({'error':'Missing required fields'}), 400
     
     if len(data['username']) < 3:
-        return jsonify({'error' : 'Username must be at lesst 3 characters'}), 400
+        return jsonify({'error' : 'Username must be at least 3 characters'}), 400
     
     if not validate_email(data['email']):
-        return jsonify({'error': 'Inavlid email format'}), 400
+        return jsonify({'error': 'Invalid email format'}), 400
     
     if len(data['password']) < 6 :
         return jsonify({'error':'Password must be at lesst 6 characters'}), 400
@@ -61,7 +61,7 @@ def login():
     if not data or not data.get('username') or not data.get('password'):
         return jsonify({'error': 'Missing username or password'}), 400
     
-    user = User.query.filter_by(Username=data['username']).first()
+    user = User.query.filter_by(username=data['username']).first()
 
     if not user or not user.check_password(data['password']):
         return jsonify({'error' : 'Invalid username or password'}), 401
@@ -86,7 +86,7 @@ def logout():
 def status ():
     if current_user.is_authenticated:
         return jsonify({
-            'isAuthenicated': True,
+            'isAuthenticated': True,
             'user':{
                 'id':current_user.id,
                 'username': current_user.username,
