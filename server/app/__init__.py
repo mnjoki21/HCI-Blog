@@ -24,22 +24,23 @@ def create_app():
     login_manager.login_view='auth.login'
     
     CORS(app, supports_credentials=True, resources={
-        r"/auth/*":{
+        r"/api/auth/*":{
             "origins":["http://localhost:3000"],
             "methods":["GET","POST","PUT","DELETE"],
             "allow_headers":['Content-Type', 'Authorization']
         },
-        r"/posts/*": {
+        r"/api/posts/*": {
         "origins": ["http://localhost:3000"],
         "methods": ["GET", "POST", "PUT", "DELETE"],
         "allow_headers": ['Content-Type', 'Authorization']
+    }, 
     }
-    })
+    )
 
     from app.auth.routes import auth_bp
     from app.posts.routes import posts_bp
-    app.register_blueprint(auth_bp, url_prefix='/auth')
-    app.register_blueprint(posts_bp, url_prefix='/posts')
+    app.register_blueprint(auth_bp, url_prefix='/api/auth')
+    app.register_blueprint(posts_bp, url_prefix='/api/posts')
 
 
     with app.app_context():
