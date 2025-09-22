@@ -7,31 +7,36 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <div className="min-h-screen bg-gray-50">
       <Head>
         <title>NAIROBI NARRATIVES</title>
-        <meta name="description" content="A blog built with Next.js" />
+        <meta name="description" content="where nairobi writters write and unite" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <header className="bg-white shadow-sm">
         <div className="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
-          <Link href="/" className="text-xl font-bold text-gray-800">
-          NAIROBI NARRATIVES </Link>
-          <nav className="flex items-center space-x-4">
-            <SearchBar />
-            <Link href="/" className="text-gray-600 hover:text-gray-900">
-              Home
-            </Link>
-            <Link href="/posts/create" className="text-gray-600 hover:text-gray-900">
-              New Post
-            </Link>
-              <Link href="/login" className="text-gray-600 hover:text-gray-900 px-4 py-2 rounded-md transition">
-              Login
-            </Link>
-              <Link href="/sign up" className="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800 transition">
-              SignUp
-            </Link>
-              <Link href="/login" className="text-gray-600 hover:text-gray-900 px-4 py-2 rounded-md transition">
-Join Our Community            </Link>
-            
+          <Link href="/" className="text-xl font-bold text-gray-800 whitespace-nowrap">
+            NAIROBI NARRATIVES
+          </Link>
+          <nav className="flex items-center space-x-2 md:space-x-4">
+            <div className="hidden md:block">
+              <SearchBar />
+            </div>
+            <div className="flex items-center space-x-2 md:space-x-4">
+              <Link href="/" className="text-gray-600 hover:text-gray-900 whitespace-nowrap">
+                Home
+              </Link>
+              <Link href="/posts/create" className="text-gray-600 hover:text-gray-900 whitespace-nowrap">
+                New Post
+              </Link>
+              <Link href="/login" className="text-gray-600 hover:text-gray-900 px-2 py-2 rounded-md transition whitespace-nowrap">
+                Login
+              </Link>
+              <Link href="/sign up" className="bg-black text-white px-3 py-2 rounded-md hover:bg-gray-800 transition whitespace-nowrap">
+                SignUp
+              </Link>
+              <Link href="/login" className="text-gray-600 hover:text-gray-900 px-2 py-2 rounded-md transition whitespace-nowrap">
+                Join Our Community
+              </Link>
+            </div>
           </nav>
         </div>
       </header>
